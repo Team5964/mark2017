@@ -3,8 +3,9 @@ package org.usfirst.frc.team5964.robot;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
 
 
 /**
@@ -32,28 +33,22 @@ public class RobotMap {
 	public static AnalogGyro gyro;
 	public static Encoder leftCoder;
 	public static Encoder rightCoder;
+	public static Victor chainClimber;
+	public static Servo gearMover;
+	public static Servo gearOpener;
+	
 
 	public static void init() {
-		driveSpeedController0 = new Talon(0);
-		driveSpeedController2 = new Talon(2);
-		//		LiveWindow.addActuator("Drive", "Speed Controller 0", (Talon) driveSpeedController0);
-		//		LiveWindow.addActuator("Drive", "Speed Controller 2", (Talon) driveSpeedController2);
+		driveSpeedController3 = new Victor(3);
+		driveSpeedController2 = new Victor(2);
+		//		LiveWindow.addActuator("Drive", "Speed Controller 0", (Victor) driveSpeedController0);
+		//		LiveWindow.addActuator("Drive", "Speed Controller 2", (Victor) driveSpeedController2);
 
-		driveSpeedController1 = new Talon(1);
-		driveSpeedController3 = new Talon(3);
-		//		LiveWindow.addActuator("Drive", "Speed Controller 1", (Talon) driveSpeedController1);
-		//		LiveWindow.addActuator("Drive", "Speed Controller 3", (Talon) driveSpeedController3);
-
-		robotDrive = new RobotDrive(driveSpeedController0, driveSpeedController2, driveSpeedController1, driveSpeedController3);
-		robotDrive.setSafetyEnabled(false);
-		robotDrive.setExpiration(0.1);
-		robotDrive.setSensitivity(0.5);
-		robotDrive.setMaxOutput(1.0);
-		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
-		robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
-		robotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-		robotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-
+		gearOpener = new Servo(0);
+		gearMover = new Servo(1);
+		
+		robotDrive = new RobotDrive(driveSpeedController3, driveSpeedController2);
+	
 		gyro = new AnalogGyro(0);
 		//	        LiveWindow.addSensor("Drive", "gyro", gyro);
 		gyro.setSensitivity(0.007);
